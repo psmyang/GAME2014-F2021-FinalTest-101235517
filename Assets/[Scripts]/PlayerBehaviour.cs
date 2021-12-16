@@ -1,4 +1,21 @@
-﻿using System.Collections;
+﻿//*********************************************************************************************************
+// GAME2014-F2021-Final Test-101235517.C# Unity by Mingkun Yang (C) December 16th 2021 All Rights Reserved.
+//
+// Name: Mingkun Yang 
+//
+// StudentID: 101235517
+//
+// Final Test submission.
+//
+// Description: Player Behaviour
+//
+// Modified: December 16th 2021
+//
+// File Name: PlayerBehaviour.cs
+//
+//******************************************************************************************************
+
+using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using Unity.Mathematics;
@@ -15,7 +32,9 @@ public enum ImpulseSounds
     HIT3,
     DIE,
     THROW,
-    GEM
+    GEM,
+    SHRINK,
+    SHRINKBACK
 }
 
 public class PlayerBehaviour : MonoBehaviour
@@ -286,6 +305,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (other.gameObject.CompareTag("Floating Platform"))
         {
             other.gameObject.GetComponent<FloatingPlatformController>().isActive = true;
+            transform.SetParent(other.gameObject.transform.parent);
         }
     }
 
@@ -300,6 +320,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (other.gameObject.CompareTag("Floating Platform"))
         {
             other.gameObject.GetComponent<FloatingPlatformController>().isActive = false;
+            transform.SetParent(parent);
         }
     }
 
